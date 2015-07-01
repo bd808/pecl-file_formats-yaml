@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="php-yaml : YAML-1.1 parser and emitter PECL package">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>php-yaml</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/bd808/pecl-file_formats-yaml">View on GitHub</a>
+
+          <h1 id="project_title">php-yaml</h1>
+          <h2 id="project_tagline">YAML-1.1 parser and emitter PECL package</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/bd808/pecl-file_formats-yaml/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/bd808/pecl-file_formats-yaml/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>The Yaml PHP Extension provides a wrapper to the LibYAML library.</p>
+
+<p>It gives the user the ability to parse YAML document streams into PHP
+constructs and emit PHP constructs as valid YAML 1.1 documents.</p>
+
+<ul>
+<li>For more information about LibYAML see <a href="http://pyyaml.org/wiki/LibYAML">http://pyyaml.org/wiki/LibYAML</a>.</li>
+<li>For more information about YAML see <a href="http://yaml.org/">http://yaml.org/</a>
+</li>
+</ul>
+
+<h2>
+<a id="key-features" class="anchor" href="#key-features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Key Features</h2>
+
+<ul>
+<li>
+<a href="http://pyyaml.org/wiki/LibYAML">LibYAML parser</a> much faster than any pure PHP solution</li>
+<li>Supports YAML 1.1 standard</li>
+<li>Supports '&lt;&lt;' <a href="http://yaml.org/type/merge.html">Merge Key</a> in mappings</li>
+<li>Parser supports user-defined callbacks for custom yaml tag handling</li>
+<li>Can extract one or all documents from a stream of valid YAML text</li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Php-yaml can be installed <a href="https://secure.php.net/manual/en/install.pecl.php">using PHP's PECL package manager</a>. This extension requires the <a href="http://pyyaml.org/wiki/LibYAML">LibYAML C library</a> version 0.1.0 or higher to be installed.</p>
+
+<pre><code>$ sudo apt-get install libyaml-dev
+$ sudo pecl install yaml
+</code></pre>
+
+<h2>
+<a id="use" class="anchor" href="#use" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use</h2>
+
+<p>See the <a href="http://php.net/yaml">extension documentation</a> for (mostly) complete details on using the library.</p>
+
+<h3>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h3>
+
+<div class="highlight highlight-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$addr</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>given<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>Chris<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>family<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>Dumars<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>address<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">"</span>lines<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>458 Walkman Dr.</span></span>
+<span class="pl-s1"><span class="pl-s">        Suite #292<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">"</span>city<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>Royal Oak<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">"</span>state<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>MI<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">"</span>postal<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-c1">48046</span>,</span>
+<span class="pl-s1">      ),</span>
+<span class="pl-s1">  );</span>
+<span class="pl-s1"><span class="pl-smi">$invoice</span> <span class="pl-k">=</span> <span class="pl-k">array</span> (</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>invoice<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-c1">34843</span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>date<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>2001-01-23<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>bill-to<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-smi">$addr</span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>ship-to<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-smi">$addr</span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>product<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">        <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">"</span>sku<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>BL394D<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">"</span>quantity<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-c1">4</span>,</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">"</span>description<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>Basketball<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">"</span>price<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-c1">450</span>,</span>
+<span class="pl-s1">          ),</span>
+<span class="pl-s1">        <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">"</span>sku<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>BL4438H<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">"</span>quantity<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-c1">1</span>,</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">"</span>description<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>Super Hoop<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">"</span>price<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-c1">2392</span>,</span>
+<span class="pl-s1">          ),</span>
+<span class="pl-s1">      ),</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>tax<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-c1">251.42</span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>total<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-c1">4443.52</span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>comments<span class="pl-pds">"</span></span><span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>Late afternoon is best. Backup contact is Nancy Billsmer @ 338-4338.<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">    );</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// generate a YAML representation of the invoice</span></span>
+<span class="pl-s1"><span class="pl-smi">$yaml</span> <span class="pl-k">=</span> yaml_emit(<span class="pl-smi">$invoice</span>);</span>
+<span class="pl-s1"><span class="pl-c1">var_dump</span>(<span class="pl-smi">$yaml</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// convert the YAML back into a PHP variable</span></span>
+<span class="pl-s1"><span class="pl-smi">$parsed</span> <span class="pl-k">=</span> yaml_parse(<span class="pl-smi">$yaml</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// check that roundtrip conversion produced an equivalent structure</span></span>
+<span class="pl-s1"><span class="pl-c1">var_dump</span>(<span class="pl-smi">$parsed</span> <span class="pl-k">==</span> <span class="pl-smi">$invoice</span>);</span></pre></div>
+
+<h2>
+<a id="acknowledgements" class="anchor" href="#acknowledgements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Acknowledgements</h2>
+
+<p>php-yaml v0.1.0 through v0.3.0 was developed by <a href="http://d.hatena.ne.jp/rsky/20071228/1198841055">Ryusuke Sekiyama</a>.</p>
+
+<p>Since v0.4.0 the extension has been maintained by <a href="https://github.com/bd808">Bryan Davis</a>. Development of v0.4.0 to v1.1.0 supported by <a href="http://keynetics.com">Keynetics Inc</a>. Special thanks to Brad and Tim for being executives who understand that giving back to the open source community is important.</p>
+
+<p>Inspiration and some implementation details have been taken from:</p>
+
+<ul>
+<li>php-syck <a href="http://pecl.php.net/package/syck">http://pecl.php.net/package/syck</a>
+</li>
+<li>
+<a href="http://www.macruby.org/">MacRuby</a>'s <a href="http://www.macruby.org/trac/browser/MacRuby/trunk/ext/libyaml">libyaml wrapper</a>
+</li>
+<li>LibYAML's examples <a href="http://pyyaml.org/wiki/LibYAML">http://pyyaml.org/wiki/LibYAML</a>
+</li>
+</ul>
+
+<p>Other helpful folks:</p>
+
+<ul>
+<li>
+<a href="http://code.google.com/u/brett.bieber/">Brett Bieber</a> and his <a href="http://saltybeagle.com/2008/12/using-simplechannelserver-to-manage-a-pear-channel-on-google-code/">tutorial on hosting a pear channel on googlecode</a>.</li>
+<li>
+<a href="http://tylerrick.com/">Tyler Rick</a> and his <a href="http://whynotwiki.com/How_I_moved_my_code_repository_to_Google_Code">tutorial on moving a subversion project to googlecode</a>.</li>
+<li>
+<a href="http://pecl.php.net/user/pajoye">Pierre-Alain Joye</a> for approving my PECL hosting application and helping me get all the accounts and permissions I needed there.</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">php-yaml maintained by <a href="https://github.com/bd808">bd808</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-11777435-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
